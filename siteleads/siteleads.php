@@ -5,7 +5,7 @@
  * Description: Capture more leads automatically with a multi-channel contact widget and a free AI assistant that works 24/7.
  * Author: ExtendThemes
  * Author URI: https://extendthemes.com
- * Version: 1.1.6
+ * Version: 1.1.7
  * License: GPL3+
  * License URI: https://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain: siteleads
@@ -58,8 +58,8 @@ if ( defined( 'SITELEADS_VERSION' ) ) {
 }
 
 
-define( 'SITELEADS_VERSION', '1.1.5' );
-define( 'SITELEADS_BUILD_NUMBER', '136' );
+define( 'SITELEADS_VERSION', '1.1.7' );
+define( 'SITELEADS_BUILD_NUMBER', '138' );
 
 define( 'SITELEADS_ROOT_URL', untrailingslashit( plugin_dir_url( __FILE__ ) ) );
 define( 'SITELEADS_ENTRY_FILE', __FILE__ );

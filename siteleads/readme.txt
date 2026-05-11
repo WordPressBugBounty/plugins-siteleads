@@ -4,11 +4,10 @@ Contributors: ExtendThemes
 Tags: lead generation, whatsapp, ai chatbot, chat button, contact widget
 Requires at least: 6.8
 Tested up to: 7.0
-Stable tag: 1.1.6
 Requires PHP: 7.4
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.en.html
-
+Stable tag: 1.1.7
 
 💬 Turns visitors into leads. Contact Widget, Free AI Chatbot, WhatsApp, Instagram, Facebook Messenger, Telegram, phone call, email, 14+ channels.
 
@@ -221,6 +220,10 @@ The plugin connects to cloud.siteleads.ai to enable AI chatbot functionality, ma
 _These connections are only active if the AI chatbot is enabled and a SiteLeads account has been created. The basic contact widget operates independently._
 
 == Changelog ==
+
+
+= 1.1.7 =
+* Minor bug fixes
 
 = 1.1.5 =
 * Improved Colibri theme integration

@@ -156,6 +156,7 @@ class ComposerStaticInitSiteLeads
         'SiteLeads\\Constants' => __DIR__ . '/../..' . '/lib/Constants.php',
         'SiteLeads\\Core\\Activation' => __DIR__ . '/../..' . '/lib/Core/Activation.php',
         'SiteLeads\\Core\\AssetsRegistry' => __DIR__ . '/../..' . '/lib/Core/AssetsRegistry.php',
+        'SiteLeads\\Core\\CLI' => __DIR__ . '/../..' . '/lib/Core/CLI.php',
         'SiteLeads\\Core\\DataHelper' => __DIR__ . '/../..' . '/lib/Core/DataHelper.php',
         'SiteLeads\\Core\\Flags' => __DIR__ . '/../..' . '/lib/Core/Flags.php',
         'SiteLeads\\Core\\LodashBasic' => __DIR__ . '/../..' . '/lib/Core/LodashBasic.php',

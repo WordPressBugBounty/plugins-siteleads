@@ -64,6 +64,7 @@ return array(
     'SiteLeads\\Constants' => $baseDir . '/lib/Constants.php',
     'SiteLeads\\Core\\Activation' => $baseDir . '/lib/Core/Activation.php',
     'SiteLeads\\Core\\AssetsRegistry' => $baseDir . '/lib/Core/AssetsRegistry.php',
+    'SiteLeads\\Core\\CLI' => $baseDir . '/lib/Core/CLI.php',
     'SiteLeads\\Core\\DataHelper' => $baseDir . '/lib/Core/DataHelper.php',
     'SiteLeads\\Core\\Flags' => $baseDir . '/lib/Core/Flags.php',
     'SiteLeads\\Core\\LodashBasic' => $baseDir . '/lib/Core/LodashBasic.php',

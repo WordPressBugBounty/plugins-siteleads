@@ -5,6 +5,7 @@ namespace SiteLeads;
 use SiteLeads\Admin\Admin;
 use SiteLeads\Core\Activation;
 use SiteLeads\Core\AssetsRegistry;
+use SiteLeads\Core\CLI;
 use SiteLeads\Core\NotificationsManager;
 use SiteLeads\Core\Singleton;
 use SiteLeads\Features\Features;
@@ -23,6 +24,7 @@ class Bootstrap {
 		SvgFilter::load();
 		Features::load();
 		NotificationsManager::load();
+		CLI::load();
 
 		// Load Pro version if exists.
 		$skip_pro_loaded = defined( 'SITELEADS_SKIP_PRO_LOADED' ) && SITELEADS_SKIP_PRO_LOADED;
