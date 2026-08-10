@@ -3,11 +3,11 @@
 Contributors: ExtendThemes
 Tags: lead generation, whatsapp, ai chatbot, chat button, contact widget
 Requires at least: 6.8
-Tested up to: 7.0
+Tested up to: 7.1
 Requires PHP: 7.4
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.en.html
-Stable tag: 1.1.7
+Stable tag: 1.2.0
 
 💬 Turns visitors into leads. Contact Widget, Free AI Chatbot, WhatsApp, Instagram, Facebook Messenger, Telegram, phone call, email, 14+ channels.
 
@@ -221,6 +221,8 @@ _These connections are only active if the AI chatbot is enabled and a SiteLeads 
 
 == Changelog ==
 
+= 1.2.0 =
+- Added support for WordPress 7.1
 
 = 1.1.7 =
 * Minor bug fixes

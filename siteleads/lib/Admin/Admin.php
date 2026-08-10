@@ -375,7 +375,9 @@ class Admin {
 				'#adminmenu  .toplevel_page_siteleads a[href*="siteleads-upgrade"] { color: #dab6fc !important; }' .
 				'#adminmenu  .toplevel_page_siteleads a.siteleads-upgrade-link { color: #dab6fc !important; }' .
 				'#adminmenu  .siteleads-upgrade-link-text{display flex;align-items:center;display: flex;gap: 4px;}' .
-				'#adminmenu  .siteleads-upgrade-link-text svg {width: 1.25em;height:1.25em;}'
+				'#adminmenu  .siteleads-upgrade-link-text svg {width: 1.25em;height:1.25em;}' . 
+				'body:not(.admin-color-fresh) #adminmenu li.menu-top.toplevel_page_siteleads .wp-menu-image img { transition: none !important;opacity: 1;filter: unset; }'
+
 		);
 
 		add_submenu_page(
