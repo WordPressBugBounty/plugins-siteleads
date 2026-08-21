@@ -60,6 +60,7 @@ return array(
     'SebastianBergmann\\RecursionContext\\Exception' => $vendorDir . '/sebastian/recursion-context/src/Exception.php',
     'SebastianBergmann\\RecursionContext\\InvalidArgumentException' => $vendorDir . '/sebastian/recursion-context/src/InvalidArgumentException.php',
     'SiteLeads\\Admin\\Admin' => $baseDir . '/lib/Admin/Admin.php',
+    'SiteLeads\\Admin\\SettingsRestController' => $baseDir . '/lib/Admin/SettingsRestController.php',
     'SiteLeads\\Bootstrap' => $baseDir . '/lib/Bootstrap.php',
     'SiteLeads\\Constants' => $baseDir . '/lib/Constants.php',
     'SiteLeads\\Core\\Activation' => $baseDir . '/lib/Core/Activation.php',

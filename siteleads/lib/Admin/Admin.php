@@ -331,17 +331,21 @@ class Admin {
 		}
 
 		$args = array(
-			'label'               => __( 'SiteLeads settings', 'siteleads' ),
-			'public'              => false,
-			'show_ui'             => false,
-			'show_in_rest'        => true,
-			'show_in_menu'        => false,
-			'show_in_nav_menus'   => false,
-			'rewrite'             => false,
-			'exclude_from_search' => true,
-			'publicly_queryable'  => false,
-			'rest_base'           => Constants::$siteLeadsDataPostType,
-			'capabilities'        => array(
+			'label'                 => __( 'SiteLeads settings', 'siteleads' ),
+			'public'                => false,
+			'show_ui'               => false,
+			'show_in_rest'          => true,
+			'show_in_menu'          => false,
+			'show_in_nav_menus'     => false,
+			'rewrite'               => false,
+			'exclude_from_search'   => true,
+			'publicly_queryable'    => false,
+			'rest_base'             => Constants::$siteLeadsDataPostType,
+			// Core skips the `read` capability below for published posts, which
+			// left the whole configuration readable over REST by anyone. The
+			// controller enforces it on every read.
+			'rest_controller_class' => SettingsRestController::class,
+			'capabilities'          => array(
 				'read'                   => 'edit_theme_options',
 				'create_posts'           => 'edit_theme_options',
 				'edit_posts'             => 'edit_theme_options',
@@ -350,7 +354,7 @@ class Admin {
 				'edit_others_posts'      => 'edit_theme_options',
 				'delete_others_posts'    => 'edit_theme_options',
 			),
-			'map_meta_cap'        => true,
+			'map_meta_cap'          => true,
 		);
 
 		register_post_type( Constants::$siteLeadsDataPostType, $args );
@@ -375,9 +379,8 @@ class Admin {
 				'#adminmenu  .toplevel_page_siteleads a[href*="siteleads-upgrade"] { color: #dab6fc !important; }' .
 				'#adminmenu  .toplevel_page_siteleads a.siteleads-upgrade-link { color: #dab6fc !important; }' .
 				'#adminmenu  .siteleads-upgrade-link-text{display flex;align-items:center;display: flex;gap: 4px;}' .
-				'#adminmenu  .siteleads-upgrade-link-text svg {width: 1.25em;height:1.25em;}' . 
+				'#adminmenu  .siteleads-upgrade-link-text svg {width: 1.25em;height:1.25em;}' .
 				'body:not(.admin-color-fresh) #adminmenu li.menu-top.toplevel_page_siteleads .wp-menu-image img { transition: none !important;opacity: 1;filter: unset; }'
-
 		);
 
 		add_submenu_page(
@@ -595,7 +598,7 @@ class Admin {
 							style="background-image: url('<?php echo esc_url( "{$images_base_url}/bg.svg" ); ?>')"
 						>
 							<h2>
-								<img src="<?php echo esc_url( "{$images_base_url}/logo.svg" ); ?>" alt="<?php echo esc_attr__( 'Siteleads', 'siteleads' ); ?>" class="siteleads-exit-survey-logo">	
+								<img src="<?php echo esc_url( "{$images_base_url}/logo.svg" ); ?>" alt="<?php echo esc_attr__( 'Siteleads', 'siteleads' ); ?>" class="siteleads-exit-survey-logo">
 							<?php echo esc_html__( 'Did you know that SiteLeads:', 'siteleads' ); ?></h2>
 							<ul>
 								<?php foreach ( $feature_list as $feature ) : ?>
@@ -618,7 +621,7 @@ class Admin {
 						</p>
 						<iframe
 							id="siteleads-exit-survey-iframe"
-							src="<?php echo esc_url( 'https://siteleads.ai/survey/?v=3&theme=' . rawurlencode( get_stylesheet()) ); ?>"
+							src="<?php echo esc_url( 'https://siteleads.ai/survey/?v=3&theme=' . rawurlencode( get_stylesheet() ) ); ?>"
 								class="siteleads-exit-survey-iframe"
 								frameborder="0"
 							></iframe>
@@ -626,7 +629,7 @@ class Admin {
 								<button type="button" class="button-link siteleads-exit-survey-skip"><?php echo esc_html__( 'Skip & Deactivate', 'siteleads' ); ?></button>
 								<button type="button" class="button button-primary siteleads-exit-survey-submit"><?php echo esc_html__( 'Submit & Deactivate', 'siteleads' ); ?></button>
 							</div>
-							
+
 						</section>
 					</div>
 				</div>

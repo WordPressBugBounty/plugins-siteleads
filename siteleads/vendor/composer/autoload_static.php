@@ -152,6 +152,7 @@ class ComposerStaticInitSiteLeads
         'SebastianBergmann\\RecursionContext\\Exception' => __DIR__ . '/..' . '/sebastian/recursion-context/src/Exception.php',
         'SebastianBergmann\\RecursionContext\\InvalidArgumentException' => __DIR__ . '/..' . '/sebastian/recursion-context/src/InvalidArgumentException.php',
         'SiteLeads\\Admin\\Admin' => __DIR__ . '/../..' . '/lib/Admin/Admin.php',
+        'SiteLeads\\Admin\\SettingsRestController' => __DIR__ . '/../..' . '/lib/Admin/SettingsRestController.php',
         'SiteLeads\\Bootstrap' => __DIR__ . '/../..' . '/lib/Bootstrap.php',
         'SiteLeads\\Constants' => __DIR__ . '/../..' . '/lib/Constants.php',
         'SiteLeads\\Core\\Activation' => __DIR__ . '/../..' . '/lib/Core/Activation.php',
