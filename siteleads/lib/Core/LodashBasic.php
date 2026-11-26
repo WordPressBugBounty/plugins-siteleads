@@ -2,9 +2,6 @@
 
 namespace SiteLeads\Core;
 
-use _;
-use IlluminateAgnostic\Arr\Support\Arr;
-use IlluminateAgnostic\Str\Support\Str;
 use function array_map;
 use function array_merge;
 use function count;
@@ -108,16 +105,35 @@ class LodashBasic {
 		array_unset_value( $array, $parents );
 	}
 
+	/** Calls $iterateFn( $value, $key, $collection ) for each entry ( an object's public properties ), until it returns false. */
 	static function each( $collection, $iterateFn ) {
-		_\each( $collection, $iterateFn );
+		foreach ( is_object( $collection ) ? get_object_vars( $collection ) : $collection as $key => $value ) {
+			if ( false === $iterateFn( $value, $key, $collection ) ) {
+				break;
+			}
+		}
 	}
 
+	/** The entries keyed by $iteratee( $value ) ( a callable ) or by their $iteratee path ( a string ); the last one wins. */
 	static function keyBy( $collection, $iteratee ) {
-		return _\keyBy( $collection, $iteratee );
+		$result = array();
+		foreach ( $collection as $value ) {
+			$key            = is_callable( $iteratee ) ? $iteratee( $value ) : LodashBasic::get( $value, $iteratee );
+			$result[ $key ] = $value;
+		}
+
+		return $result;
 	}
 
+	/** A list of $iteratee( $value, $key, $collection ), or of the $iteratee path ( a string ) of each value. */
 	static function map( $collection, $iteratee ) {
-		return _\map( $collection, $iteratee );
+		$values = is_object( $collection ) ? get_object_vars( $collection ) : $collection;
+		$result = array();
+		foreach ( $values as $key => $value ) {
+			$result[] = is_callable( $iteratee ) ? $iteratee( $value, $key, $collection ) : LodashBasic::get( $value, $iteratee );
+		}
+
+		return $result;
 	}
 
 	static function mapValues( $array, $mapper ) {
@@ -140,11 +156,12 @@ class LodashBasic {
 	}
 
 	static function find( $array, $closure ) {
-		return _\find( $array, $closure );
+		return Arr::first( $array, $closure );
 	}
 
+	/** The values $closure( $value, $key ) keeps, reindexed. */
 	static function filter( $array, $closure ) {
-		return _\filter( $array, $closure );
+		return array_values( Arr::where( $array, $closure ) );
 	}
 
 	static function compactWithExceptions( $array, $exceptions = array() ) {
@@ -182,7 +199,7 @@ class LodashBasic {
 	}
 
 	static function compact( $array ) {
-		return _\compact( $array );
+		return array_values( array_filter( null === $array ? array() : $array ) );
 	}
 
 	static function mergeSkipSeqArray( ...$values ) {
@@ -245,8 +262,26 @@ class LodashBasic {
 		);
 	}
 
+	/**
+	 * Laravel's Str::kebab ( snake() with "-" ), copied from pragmarx/ia-str 7.3.1: a "-" before each capital, then
+	 * lowercase; a string that is all lowercase letters is returned as it is.
+	 */
 	static function kebabCase( $string ) {
-		return Str::kebab( $string );
+		static $cache = array();
+
+		$value = strval( $string );
+		if ( isset( $cache[ $value ] ) ) {
+			return $cache[ $value ];
+		}
+
+		$kebab = $value;
+		if ( ! preg_match( '/^[a-z]+$/', $kebab ) ) {
+			$kebab = preg_replace( '/\s+/u', '', ucwords( $kebab ) );
+			$kebab = preg_replace( '/(.)(?=[A-Z])/u', '$1-', $kebab );
+			$kebab = function_exists( 'mb_strtolower' ) ? mb_strtolower( $kebab, 'UTF-8' ) : strtolower( $kebab );
+		}
+
+		return $cache[ $value ] = $kebab;
 	}
 
 	/**
@@ -266,7 +301,7 @@ class LodashBasic {
 	 * </code>
 	 */
 	static function identity( $value ) {
-		return _\identity( $value );
+		return $value;
 	}
 
 	static function uniq( $values ) {

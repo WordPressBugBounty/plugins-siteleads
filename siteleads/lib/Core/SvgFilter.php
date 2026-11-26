@@ -10,11 +10,19 @@ class SvgFilter {
 	use Singleton;
 
 	protected function __construct() {
-		add_action( 'wp_kses_allowed_html', array( $this, 'getSvgKsesAllowedElements' ) );
+		add_filter( 'wp_kses_allowed_html', array( $this, 'getSvgKsesAllowedElements' ), 10, 2 );
 	}
 
 
-	function getSvgKsesAllowedElements( $allowed_html = array() ) {
+	/**
+	 * Adds the SVG elements to the 'post' context only, the one SiteLeads prints its icons with ( wp_kses_post() ).
+	 * The other contexts ( comments, user bios, term descriptions, 'strip', 'entities' ) are left as they are.
+	 */
+	public function getSvgKsesAllowedElements( $allowed_html = array(), $context = '' ) {
+		if ( 'post' !== $context || ! is_array( $allowed_html ) ) {
+			return $allowed_html;
+		}
+
 			$svg_elements = array(
 				'svg'     =>
 					array(
@@ -110,9 +118,5 @@ class SvgFilter {
 			}
 
 			return $allowed_html;
-
 	}
-
-
-
 }

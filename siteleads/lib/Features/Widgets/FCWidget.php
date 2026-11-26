@@ -2,14 +2,13 @@
 
 namespace SiteLeads\Features\Widgets;
 
-use IlluminateAgnostic\Arr\Support\Arr;
+use SiteLeads\Core\Arr;
 use SiteLeads\Core\DataHelper;
 use SiteLeads\Core\LodashBasic;
 use SiteLeads\Features\FCPreviewWidget;
 use SiteLeads\Features\Greetings\GreetingRenderer as GreetingsRenderer;
 use SiteLeads\Features\Widgets\Channels\Channel;
 use SiteLeads\Utils;
-use function _\uniq;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -1347,7 +1346,7 @@ class FCWidget extends DataHelper {
 		$currentData = static::getDataFromDatabase();
 		$ids         = LodashBasic::get( $currentData, 'widgets.props.ids', array() );
 		$ids[]       = $newId;
-		$ids         = uniq( $ids );
+		$ids         = array_unique( $ids );
 		$newData     = LodashBasic::mergeSkipSeqArray( $currentData, $changes );
 
 		LodashBasic::set( $newData, 'widgets.props.ids', $ids );

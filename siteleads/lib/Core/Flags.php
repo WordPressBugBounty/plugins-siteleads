@@ -2,7 +2,6 @@
 
 namespace SiteLeads\Core;
 
-use IlluminateAgnostic\Arr\Support\Arr;
 
 class Flags {
 	private static $instance = null;

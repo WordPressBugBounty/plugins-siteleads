@@ -4,7 +4,7 @@ namespace SiteLeads\Features\Widgets\Channels;
 
 use SiteLeads\Core\DataHelper;
 use SiteLeads\Utils;
-use IlluminateAgnostic\Arr\Support\Arr;
+use SiteLeads\Core\Arr;
 use SiteLeads\Features\Widgets\FCWidgetsManager;
 
 class Channel extends DataHelper {

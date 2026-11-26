@@ -2,7 +2,7 @@
 
 namespace SiteLeads\Features\Widgets;
 
-use IlluminateAgnostic\Arr\Support\Arr;
+use SiteLeads\Core\Arr;
 use SiteLeads\Core\DataHelper;
 use SiteLeads\Core\Flags;
 use SiteLeads\Core\LodashBasic;

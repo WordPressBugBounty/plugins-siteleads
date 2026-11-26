@@ -3,7 +3,6 @@
 namespace SiteLeads\Core;
 
 use DateTime;
-use IlluminateAgnostic\Arr\Support\Arr;
 
 class NotificationsManager {
 

@@ -2,7 +2,7 @@
 
 namespace SiteLeads\Features\Greetings;
 
-use IlluminateAgnostic\Arr\Support\Arr;
+use SiteLeads\Core\Arr;
 use SiteLeads\Features\Widgets\FCWidgets;
 use SiteLeads\Utils;
 

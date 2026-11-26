@@ -263,7 +263,8 @@ class Utils {
 		$path     = ltrim( $path, '/' );
 
 		$default_args = array(
-			'sl_key'               => get_option( 'siteleads_ai_api_key', '' ),
+			// The API key is a secret: only expose it to users who can manage the plugin.
+			'sl_key'               => current_user_can( 'manage_options' ) ? get_option( 'siteleads_ai_api_key', '' ) : '',
 			'utm_theme'            => get_template(),
 			'utm_childtheme'       => get_stylesheet(),
 			'utm_install_source'   => Flags::get( 'start_source', 'other' ),

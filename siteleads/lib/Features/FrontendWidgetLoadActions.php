@@ -2,7 +2,7 @@
 
 namespace SiteLeads\Features;
 
-use IlluminateAgnostic\Arr\Support\Arr;
+use SiteLeads\Core\Arr;
 use SiteLeads\Features\Widgets\FCWidgets;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -14,7 +14,29 @@ class FrontendWidgetLoadActions {
 	public function __construct() {
 		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- we just check for the presence of the parameter here, we don't use the value
 		if ( isset( $_REQUEST['siteleads_load_widgets'] ) ) {
+			add_action( 'wp_loaded', array( $this, 'disable_woocommerce_form_handlers' ), 0 );
 			add_action( 'wp', array( $this, 'render_widgets' ), 10 );
+		}
+	}
+
+	/**
+	 * The widgets request is sent to the current page URL. WooCommerce handles actions like
+	 * ?add-to-cart=ID on any request (wp_loaded), so it would repeat them for this request too.
+	 */
+	public function disable_woocommerce_form_handlers() {
+		global $wp_filter;
+
+		if ( ! class_exists( 'WC_Form_Handler' ) || empty( $wp_filter['wp_loaded'] ) ) {
+			return;
+		}
+
+		foreach ( $wp_filter['wp_loaded']->callbacks as $priority => $callbacks ) {
+			foreach ( $callbacks as $callback ) {
+				$function = $callback['function'];
+				if ( is_array( $function ) && is_string( $function[0] ) && 'WC_Form_Handler' === $function[0] ) {
+					remove_action( 'wp_loaded', $function, $priority );
+				}
+			}
 		}
 	}
 

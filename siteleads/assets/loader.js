@@ -2,6 +2,19 @@
 	const url = new URL(window.location.href);
 	const urlParams = new URLSearchParams(url.search);
 
+	// The widgets request is sent to the current URL (so the server knows the page context).
+	// Drop the WooCommerce "action" params, otherwise the request repeats the action
+	// (e.g. ?add-to-cart=ID adds the product to the cart a second time).
+	[
+		'add-to-cart',
+		'quantity',
+		'variation_id',
+		'remove_item',
+		'undo_item',
+		'order_again',
+		'cancel_order',
+	].forEach((param) => url.searchParams.delete(param));
+
 	const MOBILE_MAX_WIDTH = 600;
 
 	function isPhone() {

@@ -445,6 +445,9 @@ class Admin {
 		add_action(
 			'in_admin_header',
 			function () {
+				if ( ! current_user_can( 'manage_options' ) ) {
+					return;
+				}
 				?>
 				<script>
 					(function(props){
